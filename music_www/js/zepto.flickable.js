@@ -1,3 +1,7 @@
+/******************** NOTE ***************/
+/******* we removed the segmentPx cache **/
+
+
 /**
  * Flickable: a Zepto plugin for making elements flickable on a touch device
  * 2012, Tom Longo
@@ -86,7 +90,7 @@
 						  .data('segment', 0)
 						  .data('segments', segments)
 						  .data('flickDirection', flickDirection)
-						  .data('segmentPx', _getSegmentPx(el, settings.segmentPx))
+						  // .data('segmentPx', _getSegmentPx(el, settings.segmentPx))
 						  .data('preventDefaultAxis', settings.preventDefaultAxis);
 
 						$(el).bind({
@@ -180,7 +184,12 @@
 	
 		}, 
 
+	// updateSegmentPx : function () {
 		
+	// 	var el = $(this);
+	// 	el.data('segmentPx', _getSegmentPx(el));
+
+	// 	},
 
 	create : function (callback) {
 
@@ -211,7 +220,8 @@
 		
 		var el 			 = $(this),
 			segment 	 = parseInt(el.data('segment')),
-			segmentPx 	 = parseInt(el.data('segmentPx')),
+			// segmentPx 	 = parseInt(el.data('segmentPx')),
+			segmentPx 	 = _getSegmentPx(el),
 			anchor 		 = -(segmentPx * segment);
 			
 			el.data('anchor', anchor);
@@ -448,7 +458,8 @@
 			flickSnapSpeed= parseFloat(el.data('flickSnapSpeed')), 
 			segments 	  = parseInt(el.data('segments')), 
 			segment 	  = parseInt(el.data('segment')), 
-			segmentPx 	  = parseInt(el.data('segmentPx')), 
+			// segmentPx 	  = parseInt(el.data('segmentPx')), 
+			segmentPx 	  = _getSegmentPx(el),
 			pos 		  = -(segmentPx * segment),
 			easing		  = 'ease-out';
 
@@ -488,7 +499,8 @@
 			d 	 		 	= el.data('flickDirection'), 
 			segments 	 	= parseInt(el.data('segments')), 
 			segment 	 	= parseInt(el.data('segment')), 
-			segmentPx 	 	= parseInt(el.data('segmentPx')), 
+			// segmentPx 	 	= parseInt(el.data('segmentPx')), 
+			segmentPx 	 	= parseInt(_getSegmentPx(el)), 			
 			anchor 		 	= parseInt(el.data('anchor')), 
 			pos 		 	= parseInt(el.data('pos'));
 
