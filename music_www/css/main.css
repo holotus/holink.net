@@ -1,0 +1,934 @@
+
+/**************************************************************/
+/*** FONT***** ************************************************/
+/**************************************************************/
+
+/*@import url(http://fonts.googleapis.com/css?family=Roboto:100,400);*/
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
+/*@font-face {
+	font-family: "xingothic-tc-w3";
+	src: url("/xingothictcw3.woff");
+}
+*/
+
+/**************************************************************/
+/*** RESET ****************************************************/
+/**************************************************************/
+
+/**
+ * html5doctor.com Reset Stylesheet v1.6.1 (http://html5doctor.com/html-5-reset-stylesheet/)
+ * Richard Clark (http://richclarkdesign.com)
+ * http://cssreset.com
+ */
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+body {
+    line-height:1;
+}
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+    display:block;
+}
+ul {
+    list-style:none;
+}
+blockquote, q {
+    quotes:none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+a {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+/* change colours to suit your needs */
+ins {
+    background-color:#ff9;
+    color:#000;
+    text-decoration:none;
+}
+/* change colours to suit your needs */
+mark {
+    background-color:#ff9;
+    color:#000;
+    font-style:italic;
+    font-weight:bold;
+}
+del {
+    text-decoration: line-through;
+}
+abbr[title], dfn[title] {
+    border-bottom:1px dotted;
+    cursor:help;
+}
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+/* change border colour to suit your needs */
+hr {
+    display:block;
+    height:1px;
+    border:0;
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
+}
+input, select {
+    vertical-align:middle;
+}
+
+/**************************************************************/
+/*** USERS's **************************************************/
+/**************************************************************/
+
+.hidetext {
+	text-indent: 200%; /* NOTE: -10000px will break flickable plugin */
+	white-space: nowrap;
+	overflow: hidden;
+}
+.button
+{
+	display:inline-block;
+	color: #F2F2F2;
+	background-color: #38C2BC;
+	border: 1px solid #38C2BC;
+	padding: 1em 2em;
+	text-decoration: none;
+	font-size: 1.3125em; /* 21px / 16px */
+
+	-webkit-border-radius: 0.3em; /* 9px / 16px */
+	-moz-border-radius: 0.3em;
+	border-radius: 0.3em;
+}
+.dimmedButton
+{
+	background-color: transparent;
+}
+
+html
+{
+	height: 100%;
+
+	/*font-family: Roboto, sans-serif; 	*/
+	font-family: 'Open Sans', sans-serif;
+	/*font-family: 'xingothic-tc-w3';*/
+
+	font-weight: 400;
+	/*-webkit-font-smoothing: antialiased;*/
+	font-size: 0.5em;
+}
+body
+{
+	height: 100%;
+	line-height: 1.2;
+	
+	background-image: none, url('../img/background.svg');	
+	background-repeat: repeat;
+	background-color: #1A1A1A;
+}
+
+#intro, #method, #tools, #pledge, #footer
+{
+	position: relative;
+}
+
+#intro
+{
+	/*min-height: 100%;*/
+}
+#intro header
+{
+	background-image: none, url('../img/logo.svg');      
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 11.9985em 7.382em;
+
+	width: 11.9985em;/*95.988px;*/
+	height: 7.382em; /*59.056px;*/
+
+	margin-top: 5em;
+	margin-bottom: 5em;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#intro>h1,
+#method>h1,
+#tools>h1,
+#pledge>h1
+{
+	color: #F2F2F2;
+	font-size: 3em; /* 48px / 16px */
+
+  	text-align: center;
+
+	margin-left: 14%;
+	margin-right: 14%;
+	font-weight: 100;
+}
+#intro h1
+{	
+	color: #999999;
+}
+#intro h1 b
+{	
+	color: #F2F2F2;
+	font-weight: 100;
+}
+#intro h2
+{
+	display: none;
+}
+#intro nav
+{
+	margin-top: 5em;
+	width: 100%;
+	text-align: center;
+}
+#intro nav .button
+{
+	display:block;
+	margin-top: 1em;
+	margin-left: 14%;
+	margin-right: 14%;
+}
+
+
+#method:before
+{
+	content: " ";
+	background-color: #e6e6e6;
+	display: block;
+	height: 21.875em;/* 350px / 16px */
+	width: 100%;
+	position: absolute;
+	bottom: 0px;
+}
+#method
+{
+	overflow: hidden;	
+	white-space: nowrap;
+}
+#method>* /* put real content above the fake background */
+{
+	position: relative; 
+} 
+#method>h1
+{
+	margin-top: 5em;
+	margin-bottom: 1.5em;
+}
+#method>h1:before
+{
+	content: "“";
+	color: #808080;	
+}
+#method>h1:after
+{
+	content: "”";
+	color: #808080;	
+}
+#method figure
+{
+	display: inline-block;
+	width: 28.806875em;	/* 460.91px / 16px */
+	height: 34.2174375em;/* 547.479px / 16px */
+
+	margin-right: 15.625em; /* 250px / 16px */ 
+	position: relative;
+}
+#method figure>div
+{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	white-space: normal;
+
+	border: 1em solid #FFFFFF;
+	background-color: #F2F2F2;
+	-webkit-border-radius: 0.875em; /* 14px / 16px */
+	-moz-border-radius: 0.875em;
+	border-radius: 0.875em;
+
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+	padding: 2em;
+
+}
+#method figure:before
+{
+	content: " ";
+	display: block;
+	width: 38.125em; /* 610px / 16px */
+	height: 3.75em; /* 60px / 16px*/
+	/*background-color: #ff0000;*/
+
+	position: absolute;	
+	bottom: -1.875em;
+	left: -4.6590625em;
+
+	background-image: none, url('../img/method_shadow_not_selected.svg');      
+	/*background-position: center center;*/
+	background-repeat: no-repeat;
+	background-size:38.125em 3.75em;  
+}
+#method figure.selected:before
+{
+	background-image: none, url('../img/method_shadow_selected.svg');      	
+}
+
+#method figure h3
+{
+	font-size: 1.3125em; /* 21px / 16px */
+	color: #38C2BC;
+}
+#method figure h2
+{
+	display: none;
+}
+#method figure p
+{
+	font-size: 1.125em; /* 18px / 16px */
+	color: #666666;
+}
+#method figure p b
+{
+	font-weight: 100;
+	color: #38C2BC;
+}
+#method figure figcaption
+{
+	position: absolute;
+	margin-right: 3em;
+	bottom: 2em;
+	font-size:  0.875em; /* 14px / 16px */
+	color: #666666;
+}
+#method figure.item4 figcaption
+{
+	margin-right: 4em;
+}
+#method figure.item1 h2
+{
+	display: inline-block;
+	background-image: none, url('../img/method_item1.svg');      
+	/*background-position: center center;*/
+	background-repeat: no-repeat;
+
+	background-size: 6em 6em; /* 92.08px / 16 px */
+	width: 6em; 
+	height: 6em;	
+}
+#method figure.item1 h3
+{
+	margin-top: 2em;
+}
+#method figure.item1 p
+{
+	margin-top: 1em;
+}
+#method figure.item2 h2
+{
+	position: absolute;
+	top: 0;
+
+	display: inline-block;
+	background-image: none, url('../img/method_item2.svg');      
+	/*background-position: center center;*/
+	background-repeat: no-repeat;
+
+	/*373.14px / 16px*/
+	/*233px / 16px*/
+	background-size: 23.32125em 14.5625em; 
+	width: 23.32125em; 
+	height: 14.5625em;	
+}
+#method figure.item2 p,
+#method figure.item3 p,
+#method figure.item4 p
+{
+	margin-top: 15em;
+}
+#method figure.item3 p
+{
+	margin-right: 5em;
+}
+#method figure.item4 p
+{
+	margin-right: 3em;
+}
+#method figure.item3 h2
+{
+	position: absolute;
+	top: 0;
+	left: 2em;
+
+	display: inline-block;
+	background-image: none, url('../img/method_item3.svg');      
+	/*background-position: center center;*/
+	background-repeat: no-repeat;
+
+	/* 641.51px / 16px */
+	/* 410.54px / 16px */
+	background-size: 40.094375em 25.65875em; 
+	width: 40.094375em; 
+	height: 25.65875em;	
+
+	z-index: 1; /* show the right arrow on top of the next step */
+}
+#method figure.item4 h2
+{
+	position: absolute;
+	top: 0;
+	left:-5em;
+
+	display: inline-block;
+	background-image: none, url('../img/method_item4.svg');      
+	/*background-position: center center;*/
+	background-repeat: no-repeat;
+
+	/* 607px / 16px x*/
+	/* 502px / 16px */
+	background-size: 37.9375em 31.375em;
+	width: 37.9375em; 
+	height: 31.375em;	
+
+}
+#method>nav
+{
+	display: block;
+	width: 23.4375em; /* 375px / 16px */
+	height: 0.125em; /* 2px / 16px */
+
+	bottom: 0px;
+	background-color: #666666;
+
+	text-align: center;
+
+	margin: 6em;
+	margin-top: 9em;
+
+	margin-left: auto;
+	margin-right: auto;
+
+}
+#method>nav li
+{
+	display: inline-block; 
+	position: absolute;
+}
+#method>nav li.item1 { left: 0%; }
+#method>nav li.item2 { left: 33.3%; }
+#method>nav li.item3 { left: 66.6%; }
+#method>nav li.item4 { left: 100%; }
+#method>nav li a
+{
+	display: block;
+	width: 6em;
+	height: 6em;
+	/*background-color: #666666;*/
+
+
+	position: absolute;
+	top: -3em;
+	left: -3em;
+
+	font-size: 1.125em; /* 18px / 16px */
+	text-decoration: none;
+	color: #1A1A1A;
+
+	background-image: none, url('../img/method_not_selected.svg');      
+	background-position: center center;
+	background-repeat: no-repeat;
+
+	background-size: 2.5em 2.5em; /* 92.08px / 16 px */
+	width: 6em; 
+	height: 6em;
+}
+#method>nav li.selected a
+{ 
+	background-image: none, url('../img/method_selected.svg');     
+}
+
+#tools
+{
+	background-color: #e6e6e6;
+	text-align: center;
+}
+#tools:before
+{
+	content: " ";
+	background-color: #cccccc;
+	display: block;
+	height: 37.4483125em; /* 599.173px / 16px */
+	width: 100%;
+	position: absolute;
+}
+#tools>*/* put real content above the fake background */
+{
+	position: relative;
+}
+#tools>h1
+{
+	padding-top: 3em;
+	margin-bottom: 1.5em;
+}
+#tools>h1:before
+{
+	content: "“";
+	color: #808080;	
+}
+#tools>h1:after
+{
+	content: "”";
+	color: #808080;	
+}
+#tools>figure
+{	
+	display: inline-block;
+	width: 20.3318125em;	/* 325.309px/ 16px */
+	height: 26.8795em;/* 430.072px / 16px */
+
+	margin-left: 3.5625em; /* 114px /2/ 16px */ 
+	margin-right: 3.5625em; /* 114px /2/ 16px */ 
+	margin-bottom: 7.125em; /* 114px / 16px */ 
+}
+#tools figure>div
+{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	/*white-space: normal;*/
+
+	border: 1em solid #FFFFFF;
+	background-color: #F2F2F2;
+
+	-webkit-border-radius: 0.875em; /* 14px / 16px */
+	-moz-border-radius: 0.875em;
+	border-radius: 0.875em;
+
+
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+#tools figure:before
+{
+	content: " ";
+	display: block;
+	width: 23.8125em; /* 381px / 16px */
+	height: 2.375em; /* 38px / 16px*/
+	/*background-color: #ff0000;*/
+
+	position: absolute;	
+	bottom: -1.1875em;
+	left: -1.74034375em;
+
+	background-image: none, url('../img/tools_shadow.svg');      
+	/*background-position: center center;*/
+	background-repeat: no-repeat;
+	background-size:23.8125em 2.375em;  
+}
+
+#tools>figure h2
+{	
+	display: inline-block;
+	font-size: 1.3125em; /* 21px / 16px*/
+	line-height: 2em;
+	color: #4D4D4D;
+	margin-top: -0.5em;
+	padding-left: 2.5em; /* 32px /16px + gapBetweenIcon */
+
+	background-position: left center;
+	background-repeat: no-repeat;
+	background-size:2em 2em;  
+}
+#tools>figure.item1 h2
+{	
+	background-image: none, url('../img/tools_icon1.svg');      
+}
+#tools>figure.item2 h2
+{	
+	background-image: none, url('../img/tools_icon2.svg'); 
+	padding-left: 2em;     
+}
+#tools>figure.item3 h2
+{	
+	background-image: none, url('../img/tools_icon3.svg');      
+}
+#tools>figure p
+{	
+	font-size: 0.875em; /* 14px / 16px */
+	color: #4D4D4D;
+	padding:1.5em;
+}
+#tools>figure strong
+{	
+	padding: 0.5em 1em;
+
+	position: relative;
+	top: -1.5em;
+}
+#tools>figure hr 
+{	
+	/* HACK: to line break the string and h2 */
+    line-height: 0;
+    height: 0;
+    margin: 0;
+    border: none;
+}
+#tools>figure.item1>div
+{
+	background-image: none, url('../img/tools1.svg');      
+	background-position: bottom center;
+	background-repeat: no-repeat;
+
+	background-size: 20.331875em 26.879375em; /* 325.31 / 16 px; 430.07px / 16px */
+}
+#tools>figure.item2>div
+{
+	background-image: none, url('../img/tools2.svg');      
+	background-position: bottom center;
+	background-repeat: no-repeat;
+
+	background-size: 20.331875em 26.879375em; /* 325.31 / 16 px; 430.07px / 16px */
+}
+#tools>figure.item3>div
+{
+	background-image: none, url('../img/tools3.svg');      
+	background-position: bottom center;
+	background-repeat: no-repeat;
+
+	background-size: 20.331875em 26.879375em; /* 325.31 / 16 px; 430.07px / 16px */
+}
+
+
+
+
+#pledge
+{
+	background-color: #333333;
+	text-align: left;
+	padding-left: 14%;
+	padding-right: 14%;
+	padding-bottom: 5em;
+}
+#pledge>h1
+{
+	text-align: left;
+	padding-top: 2em;
+	margin-bottom: 2em;
+	margin-left: auto;
+	margin-right: auto;
+}
+/*#pledge>h1:before
+{
+	content: "“";
+	color: #808080;	
+}
+#pledge>h1:after
+{
+	content: "”";
+	color: #808080;	
+}*/
+#pledge>h2
+{
+	font-size: 1.125em; /* 18px / 16px */
+	color: #ffffff;
+	margin-top: 2em;
+	font-weight: normal;
+}
+#pledge li
+{
+	font-size: 1.125em; /* 18px / 16px */
+	color: #CCCCCC;
+	margin-top: 1em;
+}
+#pledge li.sub
+{ 
+	color: #808080;
+	margin-top: 1em;
+	margin-bottom: 3em;
+}
+#pledge input
+{
+	font-size: 1.125em; /* 18px / 16px */
+
+	display: block;
+	width: 100%; 
+	padding: 1em;
+
+	background-color: #999999;
+	border: none;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+
+	margin-top: 1em;
+   	color: #F2F2F2;  
+}
+#pledge input::-webkit-input-placeholder {
+	color: #F2F2F2;
+}
+#pledge input:-moz-placeholder { /* Firefox 18- */
+	color: #F2F2F2;  
+}
+#pledge input::-moz-placeholder {  /* Firefox 19+ */
+	color: #F2F2F2;  
+}
+#pledge input:-ms-input-placeholder {  
+	color: #F2F2F2;  
+}
+#pledge select
+{
+	font-size: 1.125em; /* 18px / 16px */
+
+	display: block;
+	width: 100%; 
+	padding: 1em;
+
+	background-color: #999999;
+	border: none;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+
+	margin-top: 1em;
+	color: #F2F2F2;  
+}
+#pledge .terms
+{
+	text-align: center;
+	font-size: 1.125em; /* 18px / 16px */
+	color: #CCCCCC;
+	margin-top: 3em;	
+	margin-bottom: 3em;	
+}
+#pledge button
+{
+	display: block;
+	width: 100%; 
+	
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+
+	color: #F2F2F2;  
+}
+
+
+
+#footer
+{
+	background-color: #1a1a1a;
+	text-align: left;
+	padding-top: 3em;
+	padding-left: 14%;
+	padding-right: 14%;
+	padding-bottom: 10em;
+}
+#footer ul li
+{
+	margin-top: 1em;
+}
+#footer ul li:first-child
+{
+	font-size: 1.3125em; /* 21px / 16px */
+	color: #F2F2F2;
+}
+#footer ul a
+{
+	font-size: 1.125em; /* 18px / 16px */
+	color: #999999;
+	text-decoration: none;
+}
+#footer #linkList
+{
+	float: left;
+	margin-bottom: 3em;
+}
+#footer #emailList
+{
+	float: right;
+	margin-bottom: 3em;
+}
+#footer select
+{
+	font-size: 1.125em; /* 18px / 16px */
+
+	display: block;
+	width: 100%; 
+	padding: 1em;
+
+	background-color: #333333;
+	border: none;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+
+	margin-top: 3em;
+	color: #F2F2F2;  
+}
+
+
+/**************************************************************/
+/*** DESKTOP **************************************************/
+/**************************************************************/
+
+@media only screen and (min-width: 40.5em){
+
+	html
+	{
+		height: 100%;	 
+		font-size: 1em;
+	}
+
+	#intro
+	{
+		min-height: 100%;
+		
+		-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+		-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+		box-sizing: border-box;         /* Opera/IE 8+ */
+
+		padding-top: 5em;
+		padding-left: 32.5em; /* #pledge leftpadding+width+mypadding*/
+		padding-right: 3em;
+		padding-bottom: 30em; /* leave enough space between next page. */
+	}
+	#intro header
+	{
+		margin: 0;
+		font-size: 0.5em; /* TODO: may run into problem using this to reduce back the logo size to half  */
+		margin-bottom: 6em;
+	}
+	#intro h1
+	{
+		text-align: left;
+		margin: 0;
+		margin-bottom: 1em;
+	}
+	#intro h2
+	{
+		display: inherit;
+		font-size: 1.3125em; /* 21px / 16px */
+		font-weight: 100;
+		color: #F2F2F2;
+	}
+	#intro nav
+	{
+		width: auto;
+		text-align: inherit;
+		margin-top: 3em;
+	}
+	#intro nav li
+	{
+		float: left;
+		margin-right: 1.5em;
+	}
+	#intro nav .button
+	{
+		/*display: inline-block;*/
+		margin: 0;
+	}
+	#intro nav .item3
+	{
+		display: none;
+	}
+
+	#method h1
+	{
+		margin-top: 0;
+	}
+
+
+	#pledge
+	{
+		position: absolute;
+		top: 0;
+		left: 3.5em;
+		width: 25em;
+		
+		-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+		-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+		box-sizing: border-box;         /* Opera/IE 8+ */
+		
+		padding: 2em;
+		padding-top: 5em;
+		padding-bottom: 3.5em;
+
+
+		-webkit-border-bottom-left-radius: 0.875em; /* 14px / 16px */
+		-moz-border-bottom-left-radius: 0.875em;
+		border-bottom-left-radius: 0.875em;
+
+		-webkit-border-bottom-right-radius: 0.875em; /* 14px / 16px */
+		-moz-border-bottom-right-radius: 0.875em;
+		border-bottom-right-radius: 0.875em;
+	}
+	#pledge h1
+	{
+		display: none;
+	}
+	#pledge h2
+	{
+		margin: 0;
+	}
+
+	#footer
+	{
+		padding-left: 5em;
+		padding-right: 5em;
+	}
+
+	#footer #linkList
+	{
+		float: left;
+		margin-top: 0;
+		
+	}
+	#footer #emailList
+	{
+		float: left;		
+		margin-top: 0;
+		margin-left: 3em;
+	}
+	#footer select
+	{
+		width: 15em;
+		margin-top: 1em;
+		float: right;
+	}
+	#footer:after /* clearfix */
+	{
+		content: " ";
+		clear: both;
+		display: table;
+	}
+}

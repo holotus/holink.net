@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+    <head>
+    	<meta charset="utf-8"> 
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">        
+        <link rel="stylesheet" href="css/main.css">
+        <!-- script src="http://code.jquery.com/jquery-1.11.0.min.js"></script -->
+        <script src="js/zepto.min.js"></script>
+        <script src="js/zepto.flickable.js"></script>        
+        <script type="text/javascript">
+function log(msg){
+	console.log(msg);
+}
+function switchToMobileLayout(){
+	// console.log("change to mobile layout");
+}
+
+function switchToDestopLayout(){
+	// console.log("change to desktop layout");
+}
+
+function updateMethodFigure()
+{
+	var container = $("#method");
+	var firstFigure = $("#method figure.item1");
+	var flickContainer = $("#flickContainer");
+	var marginLeft = (container.width() - firstFigure.width() )/ 2;
+	// console.log();
+	var allFigureWidth = firstFigure.outerWidth(true) *4;
+	flickContainer.css({marginLeft:marginLeft,width:allFigureWidth});
+}
+
+////// touch
+/*
+var ongoingTouches = new Array();
+
+function handleStart(evt) {
+  // evt.preventDefault();
+  log("touchstart.");
+  // var el = document.getElementsByTagName("canvas")[0];
+  // var ctx = el.getContext("2d");
+  // var touches = evt.changedTouches;
+        
+  // for (var i=0; i < touches.length; i++) {
+  //   log("touchstart:"+i+"...");
+  //   ongoingTouches.push(copyTouch(touches[i]));
+  //   var color = colorForTouch(touches[i]);
+  //   ctx.beginPath();
+  //   ctx.arc(touches[i].pageX, touches[i].pageY, 4, 0,2*Math.PI, false);  // a circle at the start
+  //   ctx.fillStyle = color;
+  //   ctx.fill();
+  //   log("touchstart:"+i+".");
+  // }
+}
+function handleMove(evt) {
+  // evt.preventDefault();
+  log("touchemove.");
+  // var el = document.getElementsByTagName("canvas")[0];
+  // var ctx = el.getContext("2d");
+  // var touches = evt.changedTouches;
+
+  // for (var i=0; i < touches.length; i++) {
+  //   var color = colorForTouch(touches[i]);
+  //   var idx = ongoingTouchIndexById(touches[i].identifier);
+
+  //   if(idx >= 0) {
+  //     log("continuing touch "+idx);
+  //     ctx.beginPath();
+  //     log("ctx.moveTo("+ongoingTouches[idx].pageX+", "+ongoingTouches[idx].pageY+");");
+  //     ctx.moveTo(ongoingTouches[idx].pageX, ongoingTouches[idx].pageY);
+  //     log("ctx.lineTo("+touches[i].pageX+", "+touches[i].pageY+");");
+  //     ctx.lineTo(touches[i].pageX, touches[i].pageY);
+  //     ctx.lineWidth = 4;
+  //     ctx.strokeStyle = color;
+  //     ctx.stroke();
+
+  //     ongoingTouches.splice(idx, 1, copyTouch(touches[i]));  // swap in the new touch record
+  //     log(".");
+  //   } else {
+  //     log("can't figure out which touch to continue");
+  //   }
+  // }
+}
+function handleEnd(evt) {
+  // evt.preventDefault();
+  log("touchend/touchleave.");
+  // var el = document.getElementsByTagName("canvas")[0];
+  // var ctx = el.getContext("2d");
+  // var touches = evt.changedTouches;
+
+  // for (var i=0; i < touches.length; i++) {
+  //   var color = colorForTouch(touches[i]);
+  //   var idx = ongoingTouchIndexById(touches[i].identifier);
+
+  //   if(idx >= 0) {
+  //     ctx.lineWidth = 4;
+  //     ctx.fillStyle = color;
+  //     ctx.beginPath();
+  //     ctx.moveTo(ongoingTouches[idx].pageX, ongoingTouches[idx].pageY);
+  //     ctx.lineTo(touches[i].pageX, touches[i].pageY);
+  //     ctx.fillRect(touches[i].pageX-4, touches[i].pageY-4, 8, 8);  // and a square at the end
+  //     ongoingTouches.splice(idx, 1);  // remove it; we're done
+  //   } else {
+  //     log("can't figure out which touch to end");
+  //   }
+  // }
+}
+function handleCancel(evt) {
+  evt.preventDefault();
+  log("touchcancel.");
+  // var touches = evt.changedTouches;
+  
+  // for (var i=0; i < touches.length; i++) {
+  //   ongoingTouches.splice(i, 1);  // remove it; we're done
+  // }
+}
+*/
+$(function() {
+
+	/// @media mobile
+	{
+		var mq = window.matchMedia('screen and (max-width: 40.5em)');
+		if(mq.matches) { switchToMobileLayout(); }    
+		mq.addListener(function(changed) { 
+			if(changed.matches) {
+				switchToMobileLayout();
+			}
+		});
+	}
+	
+	/// @media desktop
+	{
+		var mq = window.matchMedia('screen and (min-width: 40.5em)');	
+		if(mq.matches) { switchToDestopLayout(); }	
+		mq.addListener(function(changed) {
+			if(changed.matches) { switchToDestopLayout(); }
+		});
+	}
+
+	/// Method slider
+	{
+		$(window).resize(updateMethodFigure);
+		updateMethodFigure();
+	}
+
+	{
+		var container = $("#flick");
+		container.flickable({
+			segments:4,
+			flickDirection: 'x',
+			preventDefaultAxis: 'y',
+			onScroll: function(eventData, segment) { 
+				console.log(segment);
+
+				$("#method nav li").removeClass("selected");
+				$("#method figure").removeClass("selected");
+				$("#method .item"+(segment+1)).addClass("selected");
+			}
+		});
+		
+
+		$("#method nav .item1 a").click(function(event){
+			event.preventDefault();
+			container.flickable('segment', 0);
+		});
+		$("#method nav .item2 a").click(function(event){
+			event.preventDefault();
+			container.flickable('segment', 1);
+		});
+		$("#method nav .item3 a").click(function(event){
+			event.preventDefault();
+			container.flickable('segment', 2);
+		});
+		$("#method nav .item4 a").click(function(event){
+			event.preventDefault();
+			container.flickable('segment', 3);
+		});
+	}
+
+	// {
+	// 	var el = $("#method")[0];
+	// 	el.addEventListener("touchstart", handleStart, false);
+	// 	el.addEventListener("touchend", handleEnd, false);
+	// 	el.addEventListener("touchcancel", handleCancel, false);
+	// 	el.addEventListener("touchleave", handleEnd, false);
+	// 	el.addEventListener("touchmove", handleMove, false);
+	// 	// log("initialized.");
+	// }
+
+});
+
+        </script>
+    </head>
+    <body>    	
+    	<section id="intro">
+			<header class="hidetext">stop counting</header>
+    		<h1>Statistically 80% of the piano student gave up piano, one of the major cause is poor sight reading skill, <b>it all began with a bad habit, “Counting”.</b></h1>
+    		<h2>Our goal is to collect help from millions of piano lovers, teachers and students around the world to put a stop on counting notes.</h2>
+			<nav>
+				<ul>
+					<li><a href="#" class="item1 button dimmedButton">New Method</a></li>
+					<li><a href="#" class="item2 button dimmedButton">New Tools</a></li>
+					<li><a href="#" class="item3 button">Pledge</a></li>
+				</ul>
+			</nav>
+    	</section>
+    	<section id="method">
+    		<h1>New Method</h1>
+    		<div id="flickContainer">
+				<div id="flick">
+					<figure class="item1 selected">
+						<div>
+							<h2 class="hidetext">Objective</h2>					
+							<h3>Intermediate goal</h3>
+							<p>Identify every note as fast as identifying the Middle-C.</p>
+							<h3>Final goal</h3>
+							<p>Visualize full piano by looking at the notations.</p>
+						</div>
+					</figure>
+					<figure class="item2">
+						<div>
+							<h2 class="hidetext">Stop</h2>
+							<!-- <img src="" /> -->
+							<p>1. When a student start counting notes, stop them. (Yes, <b>mnemonic*</b> is a form of counting.)</p>
+							<figcaption>* mnemonic (e.g. Every Good Boy Deserves Fudge) is a great way to describe the system, but it’s not the most natural way to read.</figcaption>
+						</div>
+					</figure>
+					<figure  class="item3">
+						<div>
+							<h2 class="hidetext">Pick</h2>
+							<!-- <img src="" /> -->
+							<p>2. Instead, assist the student to find the card by identifying the notation's <b>unique visual characteristic**</b>.</p>
+							<figcaption>** Unique Visual Characteristic - Either a note is on the first space or on the middle line, you can tell it instantly, those are visual characteristic.</figcaption>
+						</div>
+					</figure>
+					<figure class="item4">
+						<div>
+							<h2 class="hidetext">Memorize</h2>
+							<!-- <img src="" /> -->
+							<p>3. Then utilize the retractable card to point out the <b/>hidden piano***</b> and suggest them to memorize the relationship between the notation and the piano.</p>
+							<figcaption>*** Hidden Piano - The whole notations system is a visual abstraction of a piano, there is no math nor calculation involved. The same set of notations always map to the same set of keys.</figcaption>
+						</div>
+					</figure>
+				</div>
+			</div>
+			<nav>
+				<ul>
+					<li class="item1 selected"><a href="#">Objective</a></li>
+					<li class="item2"><a href="#">Stop</a></li>
+					<li class="item3"><a href="#">Pick</a></li>
+					<li class="item4"><a href="#">Memorize</a></li>
+				</ul>
+			</nav>
+    	</section>
+    	<section id="tools">
+    		<h1>New Tools</h1>
+			<figure class="item1">
+				<div>
+					<strong class="button">Free</strong>
+					<hr/>
+					<h2>DIY Template</h2>
+					<p>Best for group class activity. DIY with your home/school printer.</p>
+				</div>
+			</figure>
+			<figure class="item2">
+				<div>
+					<strong class="button">Free</strong>
+					<hr/>
+					<h2>App</h2>
+					<p>First app make for piano teachers. Best for explaining the method to anyone, anywhere.</p>
+				</div>
+			</figure>
+			<figure class="item3">
+				<div>
+					<strong class="button">Pre-order now</strong>
+					<hr/>
+					<h2>Read Deck</h2>
+					<p>Real deck for real lesson. Made for durability and easy to store.</p>
+				</div>
+			</figure>
+
+    	</section>
+    	<section id="pledge">
+    		<h1>Our goal is to collect help from millions of piano lovers, teachers and students around the world to put a stop on counting notes.</h1>
+    		<h2>By signing this pledge you are:</h2>
+			<ul>
+				<li>1. accepting our kit *</li>
+				<li>2. taking an active role in effort to stop piano student from counting notes with the provided kit *.</li>
+				<li class="sub">* kit include: a pdf DIY template & a access code for the teaching app on mobile and tablet.</li>
+			</ul>			
+			<form>
+				<input type="text" placeholder="Full name" />
+				<input type="email" placeholder="Email" />
+				<select>
+					<option value="teacher">I am a teacher.</option>
+					<option value="student">I am a student.</option>
+					<option value="other">I am a music lover.</option>
+				</select>
+				<p class="terms">Read the terms and conditions.</p>
+				<button type="submit" class="button" >Pledge</button>
+			</form>
+    	</section>
+    	<footer id="footer">
+    		<ul id="linkList">
+    			<li>Useful links</li>
+    			<li><a href="#">Shop</a></li>
+    			<li><a href="#">About Us</a></li>
+    			<li><a href="#">Privacy Policy</a></li>
+    		</ul>
+    		<ul id="emailList">
+    			<li>Get in touch</li>
+    			<li><a href="#">admin@stopcountingpledge.com</a></li>
+    			<li><a href="#">pr@stopcountingpledge.com</a></li>
+    			<li><a href="#">ideas@stopcountingpledge.com</a></li>
+    			<li><a href="#">order@stopcountingpledge.com</a></li>
+    		</ul>
+			<select>
+				<option value="en">English</option>				
+				<option value="zh-HK">香港繁體</option>
+				<option value="zh-CN">中国简体</option>
+			</select>
+    	</footer>
+	</body>
+</html>
+
+
+
+
+
+
