@@ -8,75 +8,96 @@
         <script src="js/zepto.min.js"></script>
         <script src="js/zepto.flickable.js"></script>        
         <script type="text/javascript">
+
 function log(msg){
 	console.log(msg);
 }
 
-function resetMethodFigure(){
-	//
-	setTimeout(function() {
-		var container = $("#flick");
-		// container.flickable('updateSegmentPx');
-		container.flickable('segment', 0);
-	}, 1); 
-}
-function switchToMobileLayout(){
-	// console.log("change to mobile layout");
-	resetMethodFigure();
-}
-
-function switchToDestopLayout(){
-	// console.log("change to desktop layout");
-	resetMethodFigure();
-}
-
-function updateMethodFigure()
+function methodFigureGoto(index)
 {
-	var container = $("#method");
-	var firstFigure = $("#method figure.item1");
-	var flickContainer = $("#flickContainer");
-	var marginLeft = (container.width() - firstFigure.width() )/ 2;
-	// console.log();
-	var allFigureWidth = firstFigure.outerWidth(true) *4;
-	flickContainer.css({marginLeft:marginLeft,width:allFigureWidth});
+	log("methodFigureGoto: " + index);
+	var container = $("#flick");	
+	container.flickable('segment', index);	
+}
+function switchToSmallLayout(){
+	log("switchToSmallLayout");
+	methodFigureGoto(0);
+}
+
+function switchToMidiumLayout(){
+	log("switchToMidiumLayout");
+	methodFigureGoto(0);
+}
+
+function switchToLargeLayout(){
+	log("switchToLargeLayout");
+	methodFigureGoto(0);
 }
 
 $(function() {
 
-	/// @media mobile
+	/// @media
 	{
-		var mq = window.matchMedia('screen and (max-width: 40.5em)');
-		if(mq.matches) { switchToMobileLayout(); }    
-		mq.addListener(function(changed) { 
-			if(changed.matches) {
-				switchToMobileLayout();
+		var mq1 = window.matchMedia('screen and (min-width: 30em)');
+		var mq2 = window.matchMedia('screen and (min-width: 60em)');	
+		
+		if(!mq1.matches) 
+		{ 
+			switchToSmallLayout();
+		}
+		else 
+		{
+			if(!mq2.matches) {
+				switchToMidiumLayout(); 			
+			}else{
+				switchToLargeLayout(); 
 			}
-		});
-	}
-	
-	/// @media desktop
-	{
-		var mq = window.matchMedia('screen and (min-width: 40.5em)');	
-		if(mq.matches) { switchToDestopLayout(); }	
-		mq.addListener(function(changed) {
-			if(changed.matches) { switchToDestopLayout(); }
+		}
+
+		mq1.addListener(function(changed) { 
+			if(changed.matches) {
+				switchToMidiumLayout();
+			}else{
+				switchToSmallLayout();				
+			}
+		});	
+		
+		mq2.addListener(function(changed) {
+			if(changed.matches) 
+			{
+				switchToLargeLayout(); 
+			} else {
+				switchToMidiumLayout(); 
+			}
 		});
 	}
 
 	/// Method slider
 	{
-		$(window).resize(updateMethodFigure);
-		updateMethodFigure();
-	}
+		function centerFirstFigure()
+		{
+			var container = $("#method");
+			var firstFigure = $("#method figure.item1");
+			var flickContainer = $("#flickContainer");
+			var marginLeft = (container.width() - firstFigure.width() )/ 2;
+			
+			var HACKadjustincorrectwidth = 1.006;
 
-	{
+			var allFigureWidth = firstFigure.outerWidth(true) * 4 * HACKadjustincorrectwidth;
+
+			flickContainer.css({marginLeft:marginLeft,width:allFigureWidth});
+		}
+
+		$(window).resize(centerFirstFigure);
+		centerFirstFigure();
+
 		var container = $("#flick");
 		container.flickable({
 			segments:4,
 			flickDirection: 'x',
 			preventDefaultAxis: 'y',
 			onScroll: function(eventData, segment) { 
-				console.log(segment);
+				log("onScroll: " + segment);
 
 				$("#method nav li").removeClass("selected");
 				$("#method figure").removeClass("selected");
@@ -87,19 +108,19 @@ $(function() {
 
 		$("#method nav .item1 a").click(function(event){
 			event.preventDefault();
-			container.flickable('segment', 0);
+			methodFigureGoto(0);
 		});
 		$("#method nav .item2 a").click(function(event){
 			event.preventDefault();
-			container.flickable('segment', 1);
+			methodFigureGoto(1);
 		});
 		$("#method nav .item3 a").click(function(event){
 			event.preventDefault();
-			container.flickable('segment', 2);
+			methodFigureGoto(2);
 		});
 		$("#method nav .item4 a").click(function(event){
 			event.preventDefault();
-			container.flickable('segment', 3);
+			methodFigureGoto(3);
 		});
 	} 
 });
@@ -113,9 +134,9 @@ $(function() {
     		<h2>Our goal is to collect help from millions of piano lovers, teachers and students around the world to put a stop on counting notes.</h2>
 			<nav>
 				<ul>
-					<li><a href="#" class="item1 button dimmedButton">New Method</a></li>
-					<li><a href="#" class="item2 button dimmedButton">New Tools</a></li>
-					<li><a href="#" class="item3 button">Pledge</a></li>
+					<li><a href="#method" class="item1 button dimmedButton">New Method</a></li>
+					<li><a href="#tools" class="item2 button dimmedButton">New Tools</a></li>
+					<li><a href="#pledge" class="item3 button">Pledge</a></li>
 				</ul>
 			</nav>
     	</section>
@@ -137,23 +158,23 @@ $(function() {
 							<h2 class="hidetext">Stop</h2>
 							<!-- <img src="" /> -->
 							<p>1. When a student start counting notes, stop them. (Yes, <b>mnemonic*</b> is a form of counting.)</p>
-							<figcaption>* mnemonic (e.g. Every Good Boy Deserves Fudge) is a great way to describe the system, but it’s not the most natural way to read.</figcaption>
+							<figcaption>* (e.g. Every Good Boy Deserves Fudge) is a great way to describe the system, but it’s not the most natural way to read.</figcaption>
 						</div>
 					</figure>
 					<figure  class="item3">
 						<div>
 							<h2 class="hidetext">Pick</h2>
 							<!-- <img src="" /> -->
-							<p>2. Instead, assist the student to find the card by identifying the notation's <b>unique visual characteristic**</b>.</p>
-							<figcaption>** Unique Visual Characteristic - Either a note is on the first space or on the middle line, you can tell it instantly, those are visual characteristic.</figcaption>
+							<p>2. Instead, assist the student to find the card by identifying the notation's <b>unique visual characteristic*</b>.</p>
+							<figcaption>* Either a note is on the first space or on the middle line, you can tell it instantly, those are visual characteristic.</figcaption>
 						</div>
 					</figure>
 					<figure class="item4">
 						<div>
 							<h2 class="hidetext">Memorize</h2>
 							<!-- <img src="" /> -->
-							<p>3. Then utilize the retractable card to point out the <b/>hidden piano***</b> and suggest them to memorize the relationship between the notation and the piano.</p>
-							<figcaption>*** Hidden Piano - The whole notations system is a visual abstraction of a piano, there is no math nor calculation involved. The same set of notations always map to the same set of keys.</figcaption>
+							<p>3. Then utilize the retractable card to point out the <b/>hidden piano*</b> and suggest them to memorize the relationship between the notation and the piano.</p>
+							<figcaption>* The whole notations system is a visual abstraction of a piano. The same set of notations always map to the same set of keys.</figcaption>
 						</div>
 					</figure>
 				</div>
